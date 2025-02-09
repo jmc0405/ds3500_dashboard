@@ -1,32 +1,32 @@
 import pandas as pd
 
-def read_csv(filename):
-    """
+class insuranceAPI:
 
-    :param filename: filename of csv file
-    :return: the file content as a dataframe
-    """
-    df = pd.read_csv(filename)
-    return df
-
-def change_var_name(df):
-    """
-
-    :param df: The dataframe
-    :return: The dataframe with changed variable names(in this case
-    yes is replaced with smoker and no is replaced with nonsmoker for the smoker
-    calumns
-    """
-    df["smoker"] = df["smoker"].replace({"yes": 'smoker', "no": 'nonsmoker'})
-    return df
+    def load_insurance(self, filename):
+        self.insurance = pd.read_csv(filename)
 
 
+    def change_smoker(self):
 
+
+        self.insurance["smoker"] = self.insurance["smoker"].replace({"yes": 'smoker', "no": 'nonsmoker'})
+
+    def get_data(self):
+        """Return the current state of the DataFrame."""
+        return self.insurance
+#
 def main():
 
-    read_data = read_csv("insurance.csv")
-    change_var_name(read_data)
-    print(change_var_name(read_data))
+    insurance_api = insuranceAPI()
+
+    # Load the dataset
+    insurance_api.load_insurance("insurance.csv")  # Ensure the file name matches your dataset
+
+    # Transform the 'smoker' column
+    insurance_api.change_smoker()
+
+    # Check the updated DataFrame
+    print(insurance_api.get_data())
 
 if __name__ == '__main__':
     main()
