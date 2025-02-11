@@ -9,7 +9,7 @@ class insuranceAPI:
     def change_smoker(self):
 
 
-        self.insurance["smoker"] = self.insurance["smoker"].replace({"yes": 'smoker', "no": 'nonsmoker'})
+        self.insurance["smoker"] = self.insurance["smoker"].replace({"yes": 'smoker', "no": 'nonsmoker'}).reset_index(drop=True)
 
     def get_data(self):
         """Return the current state of the DataFrame."""
